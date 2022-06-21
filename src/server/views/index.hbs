@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<a href="/users">users</a>
+<div id="embed-content">EMBED CONTENT GOES HERE</div>
+<script>
+(() => {
+window.setTimeout(async () => {
+//    const scriptEl = document.createElement('script')
+//    scriptEl.setAttribute('type', 'text/javascript');
+//    scriptEl.setAttribute('src', '/embed');
+//    const body = document.getElementsByTagName('body').item(0);
+//    body.appendChild(scriptEl);
+
+
+    const result = await fetch('/embed')
+    const js = await result.text()
+
+    const scriptEl = document.createElement('script')
+    scriptEl.setAttribute('type', 'text/javascript');
+    scriptEl.text = js
+    const body = document.getElementsByTagName('body').item(0);
+    body.appendChild(scriptEl);
+
+//    console.log({body})
+//    console.log(typeof body)
+//    const content = document.getElementById('embed-content')
+//    content.innerHTML = body
+}, 1000)
+})()
+
+</script>
